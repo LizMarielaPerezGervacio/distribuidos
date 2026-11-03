@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de personas</title>
+</head>
+<body>
+    <h3>Lista de personas</h3>
+    <table border="1" align="center" width="90%">
+        <thead>
+            <tr>
+                <th width="5%">Nro</th>
+                <th width="35%">Nombre</th>
+                <th width="15%">C:I</th>
+                <th width="35%">Correo electrónico</th>
+                <th width="10%">opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for p in personas %}
+            <tr>
+                <td>0</td>
+                <td>{{ p.apellidos }}{{p.nombres}}</td>
+                <td>{{ p.ci }}</td>
+                <td>{{ p.email }}</td>
+                </td>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+
