@@ -11,6 +11,7 @@ class Persona(models.Model):
     fecha_nacimiento=models.DateField()
     fecha_registro=models.DateTimeField(null=True, blank=True, default=timezone.now)
     email=models.CharField(max_length=100, null=True,blank=True)
+    
 
     def __str__(self):
         return self.apellidos + ' ' + self.nombres

@@ -7,6 +7,7 @@
 </head>
 <body>
     <h3>Lista de personas</h3>
+    <a href="{% url 'nueva_persona' %}">Nueva persona</a>
     <table border="1" align="center" width="90%">
         <thead>
             <tr>
@@ -20,11 +21,16 @@
         <tbody>
             {% for p in personas %}
             <tr>
-                <td>0</td>
+                <td>{{ forloop.counter }}</td>
                 <td>{{ p.apellidos }}{{p.nombres}}</td>
                 <td>{{ p.ci }}</td>
                 <td>{{ p.email }}</td>
+                <td> 
+                   <a href="{% url 'detalle_persona' p.id %}">Detalles</a>  |
+                    Editar|
+                    Eliminar
                 </td>
+            </tr>
             {% endfor %}
         </tbody>
     </table>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>     
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de persona</title>
+</head>
+<body>
+    <h3>Detalles de {{persona.apellidos}} {{persona.nombres}}</h3>
+    Telefono: {{persona.telefono}}<br>
+    Dirección: {{persona.direccion}}<br>
+    Fecha de nacimiento: {{persona.fecha_nacimiento}}<br>
+    Fecha de registro: {{persona.fecha_registro}}<br>
+    <a href="{% url 'index_personas' %}">volver</a>" 
+
+</body>
+</html>
