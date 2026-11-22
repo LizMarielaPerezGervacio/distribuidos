@@ -22,6 +22,7 @@ class Socio(models.Model):
     numero=models.CharField(max_length=10)
     fecha_registro=models.DateTimeField(default=timezone.now)
     persona=models.OneToOneField(Persona, on_delete=models.PROTECT, related_name='socio')
+    
 
     def __str__(self):
         return f"{self.persona.nombres} {self.persona.apellidos} - Nro: {self.numero}"    

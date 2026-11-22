@@ -17,3 +17,4 @@ class Ahorro(models.Model):
     class Meta:
         ordering = ['-fecha']
         verbose_name_plural = 'Ahorros'
+        
