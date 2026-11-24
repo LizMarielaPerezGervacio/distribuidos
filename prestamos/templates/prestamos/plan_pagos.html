@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Plan de pagos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 25px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #777;
+            padding: 7px;
+            text-align: center;
+        }
+
+        th {
+            background: #4472C4;
+            color: white;
+        }
+
+        .boton {
+            display: inline-block;
+            padding: 10px 15px;
+            background: #217346;
+            color: white;
+            text-decoration: none;
+            margin: 15px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>PLAN DE PAGOS DEL PRÉSTAMO</h2>
+
+    <p><b>Socio:</b> {{ prestamo.socio }}</p>
+    <p><b>Monto:</b> Bs {{ prestamo.monto }}</p>
+    <p><b>Plazo:</b> {{ prestamo.plazo }} meses</p>
+    <p><b>Tasa anual:</b> {{ prestamo.tasa_interes }}%</p>
+    <p><b>Fecha:</b> {{ prestamo.fecha|date:"d/m/Y" }}</p>
+
+    <a class="boton"
+       href="{% url 'descargar_plan_pagos' prestamo.id %}">
+       Descargar Excel
+    </a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nro.</th>
+                <th>Capital</th>
+                <th>Interés</th>
+                <th>Amortización</th>
+                <th>Saldo</th>
+                <th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>-</td>
+                <td>-</td>
+                <td>-</td>
+                <td>{{ prestamo.monto|floatformat:2 }}</td>
+                <td>{{ prestamo.fecha|date:"d/m/Y" }}</td>
+            </tr>
+
+            {% for cuota in cuotas %}
+            <tr>
+                <td>{{ cuota.numero }}</td>
+                <td>{{ cuota.capital|floatformat:2 }}</td>
+                <td>{{ cuota.interes|floatformat:2 }}</td>
+                <td>{{ cuota.amortizacion|floatformat:2 }}</td>
+                <td>{{ cuota.saldo|floatformat:2 }}</td>
+                <td>{{ cuota.fecha|date:"d/m/Y" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Resumen</h3>
+    <p>Intereses totales: Bs {{ total_interes|floatformat:2 }}</p>
+    <p>Total a pagar: Bs {{ total_pagar|floatformat:2 }}</p>
+
+    <a href="{% url 'nuevo_prestamos' %}">
+        Registrar otro préstamo
+    </a>
+
+</body>
+</html>
